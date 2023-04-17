@@ -8,6 +8,6 @@ def getSource(link):
     driver = webdriver.Chrome()
     
     driver.get(link)
-    source = driver.page_source()
+    source = driver.page_source
     driver.quit()
     return source
