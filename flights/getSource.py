@@ -3,16 +3,19 @@
 #returns html source object
 
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 from time import sleep
 
 def getSource(link):
     driver = webdriver.Chrome()
-    driver.implicitly_wait(1)
+    driver.implicitly_wait(50)
     
     driver.get(link)
+    driver.find_element(By.ID, "journey-container")
+    sleep(1)
     #driver.execute_script("window.scrollTo(0, document.getElementById('journey-container').scrollHeight)")
     #scroll agent
-    for i in range(2):
+    for i in range(3):
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
         
         sleep(0.5)

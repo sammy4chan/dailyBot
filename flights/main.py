@@ -25,3 +25,5 @@ def flights():
         allFlightInfo.append(return_arr)
 
     return allFlightInfo
+
+print(flights())
