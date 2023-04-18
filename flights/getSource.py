@@ -22,5 +22,6 @@ def getSource(link):
     return source
 
 #test code
-from bs4 import BeautifulSoup
-print(BeautifulSoup(getSource("https://www.airasia.com/flights/search/?origin=KUL&destination=PEN&departDate=10/06/2023&tripType=O&adult=1&child=0&infant=0&locale=en-gb&currency=MYR&ule=true&cabinClass=economy&uce=false&ancillaryAbTest=false&isOC=false&isDC=false&promoCode=&type=paired&airlineProfile=all&upsellWidget=true&upsellPremiumFlatbedWidget=true"), "html.parser").prettify())
+if __name__ == '__main__':
+    from bs4 import BeautifulSoup
+    print(BeautifulSoup(getSource("https://www.airasia.com/flights/search/?origin=KUL&destination=PEN&departDate=10/06/2023&tripType=O&adult=1&child=0&infant=0&locale=en-gb&currency=MYR&ule=true&cabinClass=economy&uce=false&ancillaryAbTest=false&isOC=false&isDC=false&promoCode=&type=paired&airlineProfile=all&upsellWidget=true&upsellPremiumFlatbedWidget=true"), "html.parser").prettify())
