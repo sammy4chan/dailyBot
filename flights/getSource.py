@@ -15,7 +15,7 @@ def getSource(link):
     sleep(1)
     #driver.execute_script("window.scrollTo(0, document.getElementById('journey-container').scrollHeight)")
     #scroll agent
-    for i in range(3):
+    for i in range(2):
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight)")
         
         sleep(0.5)
