@@ -15,15 +15,15 @@ def flights():
         soup = BeautifulSoup(getSource(link), "html.parser")
         
         journey_container = soup.find(id="journey-container")
-        flightContainers = journey_container.find_all("div", class_="jQtRem")
         times = [i.text.strip() for i in journey_container.find_all("p", class_="cipHcF")] #cipHcF for time text <p>
         prices = [i.text.strip() for i in journey_container.find_all("p", class_="djKEhy")] #djKEhy for price text <p>
         
         #take the first x values and returns them as a string to be sent by bot
-        for i in range(1,10+1):
-            return_arr.append(f"{times[(2*i)-1]} --> {times[2*i]} : RM{prices[i]}")
+        for i in range(10):
+            return_arr.append(f"{times[(2*i)]} --> {times[(2*i)+1]} : RM{prices[i]}")
         allFlightInfo.append(return_arr)
 
     return allFlightInfo
 
-print(flights())
+if __name__ == "__name__":
+    flights()
