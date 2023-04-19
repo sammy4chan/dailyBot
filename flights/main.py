@@ -25,5 +25,8 @@ def flights():
 
     return allFlightInfo
 
-if __name__ == "__name__":
-    flights()
+if __name__ == "__main__":
+    try:
+        print(flights())
+    except IndexError as e:
+        print(f"Index error {e}")
