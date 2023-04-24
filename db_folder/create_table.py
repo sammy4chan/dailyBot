@@ -32,24 +32,21 @@ def create_table(conn, create_table_sql):
 
 
 def main():
-    database = "./pythonsqlite.db"
+    database = "./db_folder/flights.db"
 
-    sql_create_projects_table = """ CREATE TABLE IF NOT EXISTS projects (
-                                        id integer PRIMARY KEY,
-                                        name text NOT NULL,
-                                        begin_date text,
-                                        end_date text
+    sql_create_projects_table = """ CREATE TABLE IF NOT EXISTS dates (
+                                        queryDate text NOT NULL,
+                                        flightDate text NOT NULL,
+                                        CONSTRAINT COMP_NAME PRIMARY KEY (queryDate, flightDate)
                                     ); """
 
-    sql_create_tasks_table = """CREATE TABLE IF NOT EXISTS tasks (
-                                    id integer PRIMARY KEY,
-                                    name text NOT NULL,
-                                    priority integer,
-                                    status_id integer NOT NULL,
-                                    project_id integer NOT NULL,
-                                    begin_date text NOT NULL,
-                                    end_date text NOT NULL,
-                                    FOREIGN KEY (project_id) REFERENCES projects (id)
+    sql_create_tasks_table = """CREATE TABLE IF NOT EXISTS flightTime (
+                                    flightDate_date text NOT NULL,
+                                    depTime text NOT NULL,
+                                    arrTime text NOT NULL,
+                                    price int NOT NULL,
+                                    FOREIGN KEY (flightDate_date) REFERENCES dates (flightDate),
+                                    CONSTRAINT COMP_NAME PRIMARY KEY (depTime, arrTime)
                                 );"""
 
     # create a database connection
