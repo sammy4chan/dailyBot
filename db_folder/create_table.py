@@ -46,7 +46,7 @@ def main():
                                     arrTime text NOT NULL,
                                     price int NOT NULL,
                                     FOREIGN KEY (flightDate_date) REFERENCES dates (flightDate),
-                                    CONSTRAINT COMP_NAME PRIMARY KEY (depTime, arrTime)
+                                    CONSTRAINT COMP_NAME PRIMARY KEY (flightDate_date, depTime, arrTime)
                                 );"""
 
     # create a database connection
