@@ -26,10 +26,10 @@ def select_all_tasks(conn):
     :return:
     """
     cur = conn.cursor()
-    cur.execute("SELECT * FROM tasks")
+    cur.execute("SELECT * FROM flights")
 
     rows = cur.fetchall()
-
+    print(rows)
     for row in rows:
         print(row)
 
@@ -51,13 +51,13 @@ def select_task_by_priority(conn, priority):
 
 
 def main():
-    database = "./pythonsqlite.db"
+    database = "./db_folder/flights.db"
 
     # create a database connection
     conn = create_connection(database)
     with conn:
-        print("1. Query task by priority:")
-        select_task_by_priority(conn, 1)
+        #print("1. Query task by priority:")
+        #select_task_by_priority(conn, 1)
 
         print("2. Query all tasks")
         select_all_tasks(conn)

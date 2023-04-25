@@ -25,7 +25,7 @@ def create_date(conn, dates):
     :param project:
     :return: project id
     """
-    sql = ''' INSERT INTO dates(queryDate, flightDate)
+    sql = ''' INSERT INTO dates(queryTime, flightDate)
               VALUES(?,?) '''
     cur = conn.cursor()
     cur.execute(sql, dates)
@@ -41,8 +41,8 @@ def create_entry(conn, task):
     :return:
     """
 
-    sql = ''' INSERT INTO flightTime(flightDate_date, depTime, arrTime, price)
-              VALUES(?,?,?,?) '''
+    sql = ''' INSERT INTO flights(queryTime, flightDate, depTime, arrTime, price)
+              VALUES(?,?,?,?,?) '''
     cur = conn.cursor()
     cur.execute(sql, task)
     conn.commit()

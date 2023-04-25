@@ -6,7 +6,7 @@ from db_folder.inserting_data import create_connection, create_date, create_entr
 
 #scrape 10 a day
 def flights():
-    allFlightInfo = [] #formatted like [date, slot1, slot2, ...slot10]
+    queryTime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     dayInterval = (10, 24)
     for i in range(dayInterval[0], dayInterval[1]+1):
         link = f"https://www.airasia.com/flights/search/?origin=KUL&destination=PEN&departDate={i}/06/2023&tripType=O&adult=1&child=0&infant=0&locale=en-gb&currency=MYR&ule=true&cabinClass=economy&uce=false&ancillaryAbTest=false&isOC=false&isDC=false&promoCode=&type=paired&airlineProfile=all&upsellWidget=true&upsellPremiumFlatbedWidget=true"
@@ -16,9 +16,6 @@ def flights():
         
         conn = create_connection("./db_folder/flights.db")
         with conn:
-            dates = (datetime.now().strftime("%d/%m/%Y"), f"{i}/06/2023") #flight dates
-            create_date(conn, dates)
-            
             #time to parse the link
             #soup = BeautifulSoup(open("./flights/sample.html", "r"), "html.parser") #offline ver
             
@@ -27,7 +24,7 @@ def flights():
             
             #take the first x values and returns them as a string to be sent by bot
             for j in range(10):
-                entry = (f"{i}/06/2023", f"{times[(2*j)]}", f"{times[(2*j)+1]}", f"RM{prices[j]}")
+                entry = (queryTime, f"{i}/06/2023", f"{times[(2*j)]}", f"{times[(2*j)+1]}", prices[j])
                 create_entry(conn, entry)
         
 

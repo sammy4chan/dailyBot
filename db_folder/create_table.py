@@ -34,10 +34,13 @@ def create_table(conn, create_table_sql):
 def main():
     database = "./db_folder/flights.db"
 
-    sql_create_projects_table = """ CREATE TABLE IF NOT EXISTS dates (
-                                        queryDate text NOT NULL,
+    sql_create_projects_table = """ CREATE TABLE IF NOT EXISTS flights (
+                                        queryTime text NOT NULL,
                                         flightDate text NOT NULL,
-                                        CONSTRAINT COMP_NAME PRIMARY KEY (queryDate, flightDate)
+                                        depTime text NOT NULL,
+                                        arrTime text NOT NULL,
+                                        price int NOT NULL,
+                                        CONSTRAINT COMP_NAME PRIMARY KEY (queryTime, flightDate, depTime, arrTime)
                                     ); """
 
     sql_create_tasks_table = """CREATE TABLE IF NOT EXISTS flightTime (
@@ -58,7 +61,7 @@ def main():
         create_table(conn, sql_create_projects_table)
 
         # create tasks table
-        create_table(conn, sql_create_tasks_table)
+        #create_table(conn, sql_create_tasks_table)
     else:
         print("Error! cannot create the database connection.")
 
