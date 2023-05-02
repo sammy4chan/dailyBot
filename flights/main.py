@@ -26,7 +26,8 @@ def flights():
             for j in range(10):
                 entry = (queryTime, f"{i}/06/2023", f"{times[(2*j)]}", f"{times[(2*j)+1]}", prices[j])
                 create_entry(conn, entry)
-        
+    
+    return "sucess"
 
 if __name__ == "__main__":
     try:
