@@ -1,10 +1,38 @@
 from bs4 import BeautifulSoup
-from datetime import datetime
 from getSource import getSource
-#from sqlite3 import Error
-from db_folder.inserting_data import create_connection, create_entry
+#from db_folder.inserting_data import create_connection, create_entry
+import sqlite3
+from sqlite3 import Error
 from string import Template
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
+
+def create_connection(db_file):
+    """ create a database connection to the SQLite database
+        specified by db_file
+    :param db_file: database file
+    :return: Connection object or None
+    """
+    conn = None
+    try:
+        conn = sqlite3.connect(db_file)
+    except Error as e:
+        print(e)
+
+    return conn
+
+def create_entry(conn, task):
+    """
+    Create a new task
+    :param conn:
+    :param task:
+    :return:
+    """
+    sql = ''' INSERT INTO flights(queryTime, flightDate, depTime, arrTime, price)
+              VALUES(?,?,?,?,?) '''
+    cur = conn.cursor()
+    cur.execute(sql, task)
+    conn.commit()
+    return cur.lastrowid
 
 #scrape 10 a day
 def getFlight(link:str, flightDate:str, queryTime):
