@@ -1,48 +1,31 @@
 import sqlite3 from 'sqlite3';
 
-export default function getData(date){
+export default function getData(date) {
+  return new Promise((resolve, reject) => {
+    const db = new sqlite3.Database('/Users/sam/Desktop/projects/dailyBot/db_folder/flights.db', sqlite3.OPEN_READONLY, (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        console.log('Connected to the SQlite database.');
+      }
+    });
 
-   let db = new sqlite3.Database('/Users/sam/Desktop/projects/dailyBot/db_folder/flights.db', sqlite3.OPEN_READONLY, (err) => {
-    if (err) {
-      return console.error(err.message);
-    }
-    console.log('Connected to the SQlite database.');
-  });
-  
-  let sql = `SELECT * FROM flights WHERE flightDate =?;`;
-  db.all(sql, [date], (err, rows) => {
-    var flightTimes = [];
-    var prices = [];
-    var queryTime = [];
-    if (err) {
-      throw err;
-    };
-    //iterate through every row
-    rows.forEach((row) => {
-      let depArrTime = [row.depTime, row.arrTime];
-      //console.log(depArrTime);
-      if (flightTimes.length <= 0){
-        flightTimes.push(depArrTime);
-        prices.push(row.price);
-        queryTime.push(row.queryTime);
-      };
-      for (let i = 0; i < flightTimes.length-1; i++){
-        //compare INDIVIDUAL VALUES BECAUSE JS IS BAD
-        if ((flightTimes[i][0] == row.depTime) && (flightTimes[i][1] == row.arrTime)){
-          return;
-        };
-      };
-      flightTimes.push(depArrTime);
-      prices.push(row.price);
-      queryTime.push(row.queryTime);
+    const sql = `SELECT * FROM flights WHERE flightDate = ?;`;
+
+    db.all(sql, [date], (err, rows) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(rows);
+      }
+    });
+
+    db.close((err) => {
+      if (err) {
+        console.error(err.message);
+      } else {
+        console.log('Close the database connection.');
+      }
     });
   });
-  // close the database connection
-  db.close((err) => {
-    if (err) {
-      return console.error(err.message);
-    }
-    console.log('Close the database connection.');
-  });
-  return "hello";
-};
+}
