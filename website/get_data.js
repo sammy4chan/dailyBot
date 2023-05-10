@@ -6,7 +6,7 @@ export default function getData(date) {
       if (err) {
         reject(err);
       } else {
-        console.log('Connected to the SQlite database.');
+        //console.log('Connected to the SQlite database.');
       }
     });
 
@@ -24,7 +24,7 @@ export default function getData(date) {
       if (err) {
         console.error(err.message);
       } else {
-        console.log('Close the database connection.');
+        //console.log('Close the database connection.');
       }
     });
   });
