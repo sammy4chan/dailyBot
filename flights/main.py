@@ -80,3 +80,5 @@ if __name__ == "__main__":
             except Exception as err:
                 #general error handling
                 print(f"Unexpected {err=}, {type(err)=} at {queryTime} flightDate -> {flightDate}")
+    
+    print("done.")
