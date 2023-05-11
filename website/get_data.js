@@ -1,6 +1,6 @@
 import sqlite3 from 'sqlite3';
 
-export default function getData(date) {
+function getData(date) {
   return new Promise((resolve, reject) => {
     const db = new sqlite3.Database('/Users/sam/Desktop/projects/dailyBot/db_folder/flights.db', sqlite3.OPEN_READONLY, (err) => {
       if (err) {
@@ -32,7 +32,7 @@ export default function getData(date) {
 
 //function takes in json data in the form of an object and returns preferred values and format
 
-export function parser(data){
+function parser(data){
   var flightTimes = [];
   var prices = [];
   var queryTime = [];
@@ -61,6 +61,7 @@ export function parser(data){
   return {flightTimes, prices, queryTime};
 };
 
+export {getData, parser};
 /*
 let date = ["10/06/2023", "12/06/2023", "13/06/2023", "14/06/2023", "15/06/2023", "16/06/2023", "17/06/2023", "18/06/2023", "19/06/2023", "20/06/2023", "21/06/2023", "22/06/2023", "23/06/2023", "24/06/2023"]
 date.forEach((key) => {
