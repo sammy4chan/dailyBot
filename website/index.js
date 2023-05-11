@@ -9,6 +9,3 @@ date.forEach((key) => {
   });
 });
 */
-
-import { button_handler } from "./html_generator.js"; //{ for named exports } no brackets for default exports
-button_handler("10/06/2023");

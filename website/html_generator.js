@@ -13,4 +13,8 @@ function button_handler(date){
     });
 };
 
-export {button_handler};
+function clicked(){
+  console.log("clicked");
+}
+
+export {button_handler, clicked};

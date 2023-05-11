@@ -27,7 +27,7 @@ share/python-wheels/
 MANIFEST
 
 #me
-sandbox.*
+sandbox*
 .vccode/
 node_modules/
 
