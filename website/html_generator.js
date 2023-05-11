@@ -3,5 +3,5 @@
 //-- add code to render number of buttons depending on length of flightdate queries
 
 function button_handler(date){
-  
+  //date param is a value which can be substituted to a date
 };
