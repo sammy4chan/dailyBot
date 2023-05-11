@@ -35,11 +35,11 @@ def create_entry(conn, task):
     return cur.lastrowid
 
 #scrape 10 a day
-def getFlight(link:str, flightDate:str, queryTime):
+def getFlight(link:str, flightDate:str, queryTime, db_location):
     soup = BeautifulSoup(getSource(link), "html.parser")
     journey_container = soup.find(id="journey-container")
     
-    conn = create_connection("./db_folder/flights.db")
+    conn = create_connection(db_location)
     with conn:
         #time to parse the link
         #soup = BeautifulSoup(open("./flights/sample.html", "r"), "html.parser") #offline ver
@@ -61,17 +61,17 @@ def getFlight(link:str, flightDate:str, queryTime):
 #try for 3 attempts: return a "[error] on querytime: __ flightDate: __"
 
 if __name__ == "__main__":
-    link = Template("https://www.airasia.com/flights/search/?origin=KUL&destination=PEN&departDate=$date&tripType=O&adult=1&child=0&infant=0&locale=en-gb&currency=MYR&ule=true&cabinClass=economy&uce=false&ancillaryAbTest=false&isOC=false&isDC=false&promoCode=&type=paired&airlineProfile=all&upsellWidget=true&upsellPremiumFlatbedWidget=true")
+    link = Template("https://www.airasia.com/flights/search/?origin=PEN&destination=KUL&departDate=$date&tripType=O&adult=1&child=0&infant=0&locale=en-gb&currency=MYR&ule=true&cabinClass=economy&uce=false&ancillaryAbTest=false&isOC=false&isDC=false&promoCode=&type=paired&airlineProfile=all&upsellWidget=true&upsellPremiumFlatbedWidget=true")
     
     queryTime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
     
-    for single_date in (date(2023, 6, 10) + timedelta(n) for n in range(15)):
+    for single_date in (date(2023, 6, 24) + timedelta(n) for n in range(8)):
         flightDate = single_date.strftime("%d/%m/%Y")
         flightLink = link.substitute(date=(flightDate))
         
         for attempts in range(3):
             try:
-                getFlight(link=flightLink, flightDate=flightDate, queryTime=queryTime)
+                getFlight(link=flightLink, flightDate=flightDate, queryTime=queryTime, db_location="./db_folder/pen-kl.db")
                 break
             except IndexError as ie:
                 print(ie)

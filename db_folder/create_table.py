@@ -32,7 +32,7 @@ def create_table(conn, create_table_sql):
 
 
 def main():
-    database = "./db_folder/flights.db"
+    database = "./db_folder/pen-kl.db"
 
     sql_create_projects_table = """ CREATE TABLE IF NOT EXISTS flights (
                                         queryTime text NOT NULL,
