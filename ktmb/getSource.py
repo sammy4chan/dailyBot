@@ -6,11 +6,14 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from time import sleep
 
-def getSource(link):
+#link is fixed navigation isnt
+#takes in param: date: int, month: int
+#calculate relative month scroll distance
+def getSource():
     driver = webdriver.Chrome()
     driver.implicitly_wait(50)
     
-    driver.get(link)
+    driver.get("https://online.ktmb.com.my/")
     driver.find_element(By.ID, "journey-container")
     sleep(1)
     #driver.execute_script("window.scrollTo(0, document.getElementById('journey-container').scrollHeight)")
