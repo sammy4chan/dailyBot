@@ -1,4 +1,4 @@
-import sqlite3 from 'sqlite3';
+import sqlite3 from "sqlite3";
 
 function getData(date) {
   return new Promise((resolve, reject) => {

@@ -6,26 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Flights Info</title>
     <link rel="stylesheet" href="style.css">
+    <script type="module">
+      import { getData, parser } from "./get_data.js";
+      //top level domain testing: works
+      let date = ["10/06/2023", "12/06/2023", "13/06/2023", "14/06/2023", "15/06/2023", "16/06/2023", "17/06/2023", "18/06/2023", "19/06/2023", "20/06/2023", "21/06/2023", "22/06/2023", "23/06/2023", "24/06/2023"]
+      date.forEach((key) => {
+        getData(key).then((data) => {
+        console.log(parser(data));
+        });
+      });
+    </script>
   </head>
   <body>
-  <div class="topnav">
-    <button id="day10">10</button>
-    <button id="day11">11</button>
-    <button id="day12">12</button>
-    <button id="day13">13</button>
-    <button id="day14">14</button>
-    <button id="day15">15</button>
-    <button id="day16">16</button>
-    <button id="day17">17</button>
-    <button id="day18">18</button>
-    <button id="day19">19</button>
-    <button id="day20">20</button>
-    <button id="day21">21</button>
-    <button id="day22">22</button>
-    <button id="day23">23</button>
-    <button id="day24">24</button>
-  </div>
-  <div id="display-container">
-  </div>
   </body>
 </html>
