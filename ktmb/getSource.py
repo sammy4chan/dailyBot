@@ -7,7 +7,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from bs4 import BeautifulSoup
 from time import sleep
-from datetime import date, timedelta, datetime
+from datetime import datetime
+import sqlite3
+from sqlite3 import Error
 
 #link is fixed navigation isnt
 #takes in param: date: int, month: int
@@ -21,10 +23,10 @@ def getSource(date, direction:int):
     driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div/div[2]/button").click()
     
     #select location
-    if direction == 0: #kl - pen
+    if direction == "kl_bm": #kl - pen
         Select(driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div/div[1]/select")).select_by_value("19100") #dep
         Select(driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div/div[3]/select")).select_by_value("600") #arr
-    elif direction == 1: #pen - kl
+    elif direction == "bm_kl": #pen - kl
         Select(driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div/div[1]/select")).select_by_value("600") #pen
         Select(driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div/div[3]/select")).select_by_value("19100") #kl sentral
     else:
@@ -57,10 +59,29 @@ def parser(srcCode:str):
     tr_list = soup.find_all("tr")
     for i in tr_list:
         td_list = i.find_all("td")
-        returnList.append([td_list[i].text for i in range(5)])
+        returnList.append([td_list[i].text.strip() for i in range(6)])
     return returnList
+
+def create_connection(db_file):
+    conn = None
+    try:
+        conn = sqlite3.connect(db_file)
+    except Error as e:
+        print(e)
+
+    return conn
+
+def add_data(tableName, values:tuple):
+    sql = f''' INSERT INTO {tableName}(queryTime, trainDate, depTime, arrTime, price, seats, trainName, duration)
+              VALUES(?, ?, ?, ?, ?, ?, ?, ?) '''
+    conn = create_connection("./db_folder/ktmb.db")
+    with conn:
+        cur = conn.cursor()
+        cur.execute(sql, values)
+        conn.commit()
+    
+    return cur.lastrowid    
 
 #test code
 if __name__ == '__main__':
-    soup = BeautifulSoup(getSource(), "html.parser")
-    print(soup.prettify())
+    print("empty")
