@@ -32,7 +32,7 @@ def getSource(date, direction:int):
     else:
         return ValueError
     
-    sleep(0.5) #temp solution to unable to click
+    sleep(0.5) #temp solution to unable to click should implement wait stratagy from selenium
     
     #select date
     driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div/div[5]/div/div[1]/input").click() #click on depDate
