@@ -45,7 +45,7 @@ def getSource(date, direction:int):
     sleep(0.5)
     
     calendar = driver.find_element(By.XPATH, "/html/body/section/div/div[1]/section/div[2]")
-    calendar.find_element(By.XPATH, f".//*[text()='{date.strftime('%d')}' and not(contains(@class, 'is-previous-month') or contains(@class, 'is-next-month'))]").click()
+    calendar.find_element(By.XPATH, f".//*[text()='{date.strftime('%-d')}' and not(contains(@class, 'is-previous-month') or contains(@class, 'is-next-month'))]").click()
     
     driver.find_element(By.XPATH, "/html/body/section/div/a[2]").click() #click on oneway btn
     

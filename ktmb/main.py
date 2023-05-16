@@ -1,4 +1,4 @@
-from getSource import getSource, parser, add_data, create_connection
+from getSource import getSource, parser, add_data
 from datetime import datetime, date, timedelta
 
 queryTime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
