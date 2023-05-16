@@ -32,15 +32,18 @@ def create_table(conn, create_table_sql):
 
 
 def main():
-    database = "./db_folder/pen-kl.db"
+    database = "./db_folder/ktmb.db"
 
-    sql_create_projects_table = """ CREATE TABLE IF NOT EXISTS flights (
+    sql_create_projects_table = """ CREATE TABLE IF NOT EXISTS bm_kl (
                                         queryTime text NOT NULL,
-                                        flightDate text NOT NULL,
+                                        trainDate text NOT NULL,
                                         depTime text NOT NULL,
                                         arrTime text NOT NULL,
-                                        price int NOT NULL,
-                                        CONSTRAINT COMP_NAME PRIMARY KEY (queryTime, flightDate, depTime, arrTime)
+                                        price text NOT NULL,
+                                        seats int NOT NULL,
+                                        trainName text NOT NULL,
+                                        duration text NOT NULL,
+                                        CONSTRAINT COMP_NAME PRIMARY KEY (queryTime, trainDate, depTime, arrTime)
                                     ); """
 
     sql_create_tasks_table = """CREATE TABLE IF NOT EXISTS flightTime (
