@@ -32,6 +32,8 @@ def getSource(date, direction:int):
     else:
         return ValueError
     
+    sleep(0.5) #temp solution to unable to click
+    
     #select date
     driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div/div[5]/div/div[1]/input").click() #click on depDate
     
@@ -39,6 +41,8 @@ def getSource(date, direction:int):
     scrollLength = int(date.strftime("%m")) - int(datetime.now().strftime("%m"))
     for i in range(scrollLength):
         driver.find_element(By.XPATH, "/html/body/section/div/div[1]/section/header/div[2]/button[2]").click() # next month btn
+    
+    sleep(0.5)
     
     calendar = driver.find_element(By.XPATH, "/html/body/section/div/div[1]/section/div[2]")
     calendar.find_element(By.XPATH, f".//*[text()='{date.strftime('%d')}' and not(contains(@class, 'is-previous-month') or contains(@class, 'is-next-month'))]").click()
