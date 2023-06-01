@@ -20,8 +20,9 @@ def getSource(date, direction:int):
     driver.implicitly_wait(50)
 
     #close ad
-    driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div/div[2]/button").click()
-    
+    ad = driver.find_element(By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div/div[2]/button")
+    sleep(0.5)
+    ad.click()
     #select location
     if direction == "kl_bm": #kl - pen
         Select(driver.find_element(By.XPATH, "/html/body/div[3]/div/form/div/div[1]/select")).select_by_value("19100") #dep
