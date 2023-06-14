@@ -7,6 +7,7 @@ if __name__ == "__main__":
     for single_date in (date(2023, 6, 20) + timedelta(n) for n in range(12)):
         trainDate = single_date.strftime("%d/%m/%Y")
         direction = "bm_kl" #kl_bm
+        direction = "kl_bm"
         for attempts in range(3):
             try:
                 data = parser(getSource(single_date, direction)) #0 - klpen 1-penkl

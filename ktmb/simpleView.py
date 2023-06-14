@@ -20,7 +20,7 @@ m = []
 conn = create_connection("./db_folder/ktmb.db")
 with conn:
     cur = conn.cursor()
-    cur.execute("SELECT queryTime, trainDate, depTime, arrTime, price, seats FROM bm_kl WHERE trainDate = '29/06/2023';")
+    cur.execute("SELECT queryTime, trainDate, depTime, arrTime, price, seats FROM kl_bm WHERE trainDate = '22/06/2023';")
 
     rows = cur.fetchall()
 
