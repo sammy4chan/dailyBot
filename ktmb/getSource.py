@@ -64,7 +64,7 @@ def parser(srcCode:str):
     tr_list = soup.find_all("tr")
     for i in tr_list:
         td_list = i.find_all("td")
-        returnList.append([td_list[i].text.strip() for i in range(6)])
+        returnList.append([" ".join(td_list[i].text.split()) for i in range(6)])
     return returnList
 
 def create_connection(db_file):
