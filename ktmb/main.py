@@ -1,13 +1,11 @@
 from getSource import getSource, parser, add_data
 from datetime import datetime, date, timedelta
 
-if __name__ == "__main__":
+def track(year, month, day, timerange, direction):
     queryTime = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
-    for single_date in (date(2023, 6, 20) + timedelta(n) for n in range(12)):
+    for single_date in (date(year, month, day) + timedelta(n) for n in range(timerange)):
         trainDate = single_date.strftime("%d/%m/%Y")
-        direction = "bm_kl" #kl_bm
-        direction = "kl_bm"
         for attempts in range(3):
             try:
                 data = parser(getSource(single_date, direction)) #0 - klpen 1-penkl
@@ -25,3 +23,7 @@ if __name__ == "__main__":
                 print(f"Unexpected {err=}, {type(err)=} at {queryTime} trainDate -> {trainDate}")
                 
     print("done.")
+    
+# bm_kl #kl_bm
+track(2022, 7, 13, 1, "kl_bm")
+track(2022, 7, 16, 1, "bm_kl")
