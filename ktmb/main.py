@@ -25,5 +25,5 @@ def track(year, month, day, timerange, direction):
     print("done.")
     
 # bm_kl #kl_bm
-track(2022, 7, 13, 1, "kl_bm")
-track(2022, 7, 16, 1, "bm_kl")
+track(2023, 7, 13, 1, "kl_bm")
+track(2023, 7, 16, 1, "bm_kl")
